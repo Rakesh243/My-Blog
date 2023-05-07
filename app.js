@@ -8,17 +8,13 @@ app.set("view engine", "ejs");
 app.listen(3000);
 
 app.get("/", (req, res) => {
-  res.sendFile("./pages/index.html", { root: __dirname });
+  res.render("index");
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile("./pages/about.html", { root: __dirname });
-});
-
-app.get("/about-us", (req, res) => {
-  res.redirect("/about");
+  res.render("about");
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile("./pages/404.html", { root: __dirname });
+  res.status(404).render("404");
 });
