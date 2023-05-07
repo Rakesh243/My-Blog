@@ -4,7 +4,6 @@ const app = express();
 
 // register view engine
 app.set("view engine", "ejs");
-app.set("views", "pages");
 
 app.listen(3000);
 
