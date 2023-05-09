@@ -8,7 +8,14 @@ app.set("view engine", "ejs");
 app.listen(3000);
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
+  const testBlogs = [
+    { title: "Blog 1", snippet: "Lorem ipsum dolor sir amet" },
+    { title: "Blog 2", snippet: "Lorem ipsum dolor sir amet" },
+    { title: "Blog 3", snippet: "Lorem ipsum dolor sir amet" },
+    { title: "Blog 4", snippet: "Lorem ipsum dolor sir amet" },
+  ];
+
+  res.render("index", { title: "Home", testBlogs });
 });
 
 app.get("/about", (req, res) => {

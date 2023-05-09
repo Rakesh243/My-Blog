@@ -21,6 +21,12 @@
 
     <div class="blogs content">
       <h2>All Blogs</h2>
+      <% if(testBlogs.length > 0){ %> <% testBlogs.forEach(blog => { %>
+      <h3 class="title"><%= blog.title %></h3>
+      <p class="snippet"><%= blog.snippet %></p>
+      <% }) %> <% } else { %>
+      <p>No Blogs to display yet!</p>
+      <% } %>
     </div>
   </body>
 </html>
