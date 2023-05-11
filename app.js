@@ -7,6 +7,9 @@ app.set("view engine", "ejs");
 
 app.listen(3000);
 
+// middleware and static files
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
   const testBlogs = [
     { title: "Blog 1", snippet: "Lorem ipsum dolor sir amet" },
