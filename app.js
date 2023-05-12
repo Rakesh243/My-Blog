@@ -3,6 +3,13 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+const dbURI = "";
+
+mongoose
+  .connect(dbURI)
+  .then((result) => console.log("connected to DB"))
+  .catch((err) => console.log(err));
+
 // register view engine
 app.set("view engine", "ejs");
 
