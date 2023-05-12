@@ -7,13 +7,11 @@ const dbURI = "";
 
 mongoose
   .connect(dbURI)
-  .then((result) => console.log("connected to DB"))
+  .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
 // register view engine
 app.set("view engine", "ejs");
-
-app.listen(3000);
 
 // middleware and static files
 app.use(express.static("public"));
