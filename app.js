@@ -19,13 +19,19 @@ app.use(express.static("public"));
 
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
-    title: "New Blog",
+    title: "New Blog 2",
     snippet: "About New Blog",
     body: "The text of New Blog.",
   });
 
   blog
     .save()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+app.get("/all-blogs", (req, res) => {
+  Blog.find()
     .then((result) => res.send(result))
     .catch((err) => console.log(err));
 });
