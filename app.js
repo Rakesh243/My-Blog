@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Blog = require("./models/blog");
+const { result } = require("lodash");
 
 const app = express();
 
@@ -32,6 +33,12 @@ app.get("/add-blog", (req, res) => {
 
 app.get("/all-blogs", (req, res) => {
   Blog.find()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
+
+app.get("/single-blog", (req, res) => {
+  Blog.findById("645fe2e36d3d666012306574")
     .then((result) => res.send(result))
     .catch((err) => console.log(err));
 });
