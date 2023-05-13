@@ -31,12 +31,6 @@ app.get("/add-blog", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/all-blogs", (req, res) => {
-  Blog.find()
-    .then((result) => res.send(result))
-    .catch((err) => console.log(err));
-});
-
 app.get("/single-blog", (req, res) => {
   Blog.findById("645fe2e36d3d666012306574")
     .then((result) => res.send(result))
@@ -44,14 +38,15 @@ app.get("/single-blog", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const testBlogs = [
-    { title: "Blog 1", snippet: "Lorem ipsum dolor sir amet" },
-    { title: "Blog 2", snippet: "Lorem ipsum dolor sir amet" },
-    { title: "Blog 3", snippet: "Lorem ipsum dolor sir amet" },
-    { title: "Blog 4", snippet: "Lorem ipsum dolor sir amet" },
-  ];
+  res.redirect("/blogs");
+});
 
-  res.render("index", { title: "Home", testBlogs });
+app.get("/blogs", (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.render("index", { title: "All Blogs", blogs: result });
+    })
+    .catch((err) => console.log(err));
 });
 
 app.get("/about", (req, res) => {
