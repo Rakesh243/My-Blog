@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 
 const app = express();
 
@@ -15,6 +16,19 @@ app.set("view engine", "ejs");
 
 // middleware and static files
 app.use(express.static("public"));
+
+app.get("/add-blog", (req, res) => {
+  const blog = new Blog({
+    title: "New Blog",
+    snippet: "About New Blog",
+    body: "The text of New Blog.",
+  });
+
+  blog
+    .save()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+});
 
 app.get("/", (req, res) => {
   const testBlogs = [
