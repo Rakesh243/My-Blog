@@ -17,6 +17,7 @@ app.set("view engine", "ejs");
 
 // middleware and static files
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
@@ -47,6 +48,15 @@ app.get("/blogs", (req, res) => {
     .then((result) => {
       res.render("index", { title: "All Blogs", blogs: result });
     })
+    .catch((err) => console.log(err));
+});
+
+app.post("/blogs", (req, res) => {
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => res.redirect("/blogs"))
     .catch((err) => console.log(err));
 });
 
