@@ -20,25 +20,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/add-blog", (req, res) => {
-  const blog = new Blog({
-    title: "New Blog 2",
-    snippet: "About New Blog",
-    body: "The text of New Blog.",
-  });
-
-  blog
-    .save()
-    .then((result) => res.send(result))
-    .catch((err) => console.log(err));
-});
-
-app.get("/single-blog", (req, res) => {
-  Blog.findById("645fe2e36d3d666012306574")
-    .then((result) => res.send(result))
-    .catch((err) => console.log(err));
-});
-
 app.get("/", (req, res) => {
   res.redirect("/blogs");
 });
@@ -66,6 +47,16 @@ app.get("/blogs/:id", (req, res) => {
   Blog.findById(id)
     .then((result) => {
       res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => console.log(err));
+});
+
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
     })
     .catch((err) => console.log(err));
 });
