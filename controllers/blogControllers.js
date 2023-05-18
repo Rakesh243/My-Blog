@@ -18,7 +18,12 @@ const blogDetails = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const blogCreateGet = (req, res) => {
+  res.render("create", { title: "Create new Blog" });
+};
+
 module.exports = {
   blogList,
   blogDetails,
+  blogCreateGet,
 };
