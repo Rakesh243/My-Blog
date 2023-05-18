@@ -31,9 +31,20 @@ const blogCreatePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const blogDelete = (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   blogList,
   blogDetails,
   blogCreateGet,
   blogCreatePost,
+  blogDelete,
 };

@@ -10,14 +10,6 @@ router.get("/create", blogController.blogCreateGet);
 
 router.get("/:id", blogController.blogDetails);
 
-router.delete("/:id", (req, res) => {
-  const id = req.params.id;
-
-  Blog.findByIdAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: "/blogs" });
-    })
-    .catch((err) => console.log(err));
-});
+router.delete("/:id", blogController.blogDelete);
 
 module.exports = router;
