@@ -22,8 +22,18 @@ const blogCreateGet = (req, res) => {
   res.render("create", { title: "Create new Blog" });
 };
 
+const blogCreatePost = (req, res) => {
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => res.redirect("/blogs"))
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   blogList,
   blogDetails,
   blogCreateGet,
+  blogCreatePost,
 };

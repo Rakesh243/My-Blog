@@ -4,14 +4,7 @@ const blogController = require("../controllers/blogControllers");
 
 router.get("/", blogController.blogList);
 
-router.post("/", (req, res) => {
-  const blog = new Blog(req.body);
-
-  blog
-    .save()
-    .then((result) => res.redirect("/blogs"))
-    .catch((err) => console.log(err));
-});
+router.post("/", blogController.blogCreatePost);
 
 router.get("/create", blogController.blogCreateGet);
 
