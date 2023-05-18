@@ -9,6 +9,16 @@ const blogList = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const blogDetails = (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   blogList,
+  blogDetails,
 };
