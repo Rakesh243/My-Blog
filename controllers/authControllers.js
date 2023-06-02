@@ -1,3 +1,6 @@
+const bcrypt = require("bcrypt");
+const User = require("../models/user");
+
 const userLogin = (req, res) => {
   res.render("auth/login", { title: "Login" });
 };
@@ -8,7 +11,16 @@ const userRegister = (req, res) => {
   res.render("auth/register", { title: "Register" });
 };
 
-const userRegisterPost = (req, res) => {};
+const userRegisterPost = async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  const user = new User(req.body);
+  user.password = hashedPassword;
+
+  user
+    .save()
+    .then((result) => res.redirect("/auth/login"))
+    .catch((err) => console.log(err));
+};
 
 module.exports = {
   userLogin,
