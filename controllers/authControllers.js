@@ -12,14 +12,18 @@ const userRegister = (req, res) => {
 };
 
 const userRegisterPost = async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  const user = new User(req.body);
-  user.password = hashedPassword;
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const user = new User(req.body);
+    user.password = hashedPassword;
 
-  user
-    .save()
-    .then((result) => res.redirect("/auth/login"))
-    .catch((err) => console.log(err));
+    user
+      .save()
+      .then((result) => res.redirect("/auth/login"))
+      .catch((err) => console.log(err));
+  } catch {
+    res.redirect("/auth/register");
+  }
 };
 
 module.exports = {
