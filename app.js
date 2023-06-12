@@ -18,6 +18,7 @@ app.set("view engine", "ejs");
 
 // middleware and static files
 app.use(express.static("public"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
@@ -30,7 +31,7 @@ app.get("/about", (req, res) => {
 
 app.use("/blogs", blogRoutes);
 
-app.use("/auth", authRoutes);
+app.use(authRoutes);
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
