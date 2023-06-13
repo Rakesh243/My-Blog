@@ -1,17 +1,17 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
-const userLogin = (req, res) => {
+const loginGet = (req, res) => {
   res.render("auth/login", { title: "Login" });
 };
 
-const userLoginPost = (req, res) => {};
+const loginPost = (req, res) => {};
 
-const userRegister = (req, res) => {
+const registerGet = (req, res) => {
   res.render("auth/register", { title: "Register" });
 };
 
-const userRegisterPost = async (req, res) => {
+const registerPost = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User(req.body);
@@ -27,8 +27,8 @@ const userRegisterPost = async (req, res) => {
 };
 
 module.exports = {
-  userLogin,
-  userLoginPost,
-  userRegister,
-  userRegisterPost,
+  loginGet,
+  loginPost,
+  registerGet,
+  registerPost,
 };
