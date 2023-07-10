@@ -6,7 +6,7 @@
 
     <div class="content">
       <h2>Register</h2>
-      <form action="/register" method="POST">
+      <form action="/register">
         <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required />
@@ -20,7 +20,27 @@
         <button type="submit">Register</button>
       </form>
     </div>
-    <a href="/auth/login">Login</a>
+    <a href="/login">Login</a>
+    <script>
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+          const res = await fetch("/register", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: { "content-Type": "application/json" },
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    </script>
 
     <%- include('../partials/footer.ejs') %>
   </body>
