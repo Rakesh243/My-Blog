@@ -31,7 +31,16 @@ const loginGet = (req, res) => {
   res.render("auth/login", { title: "Login" });
 };
 
-const loginPost = (req, res) => {};
+const loginPost = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.login(email, password);
+    res.status(200).json({ user: user._id });
+  } catch (error) {
+    res.status(400).json({});
+  }
+};
 
 const registerGet = (req, res) => {
   res.render("auth/register", { title: "Register" });
