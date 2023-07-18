@@ -9,9 +9,11 @@
       <div class="content">
         <p><%= blog.body %></p>
       </div>
+      <% if(user){ %>
       <a class="delete" data-doc="<%= blog._id %>">
         <img src="/trashcan.svg" alt="Delete icon" />
       </a>
+      <% } %>
     </div>
 
     <%- include("../partials/footer.ejs") %>
