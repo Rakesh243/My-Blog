@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const { checkUser } = require("./middleware/authMiddleware");
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.get("*", checkUser);
 
 app.get("/", (req, res) => {
   res.redirect("/blogs");
