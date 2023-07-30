@@ -5,6 +5,12 @@
     <%- include('../partials/nav.ejs') %>
 
     <div class="blogs content">
+      <div class="info">
+        Hello bloggers,<br />
+        after registering and logging in, you can add your text posts to appear
+        on the home page.<br />
+        You can read other's posts as well, and you can delete your own.
+      </div>
       <h2>All Blogs</h2>
       <% if(blogs.length > 0){ %> <% blogs.forEach(blog => { %>
       <a class="single" href="/blogs/<%= blog._id %>">

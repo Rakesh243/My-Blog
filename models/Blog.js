@@ -7,6 +7,10 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
+    creator: {
+      type: String,
+      required: true,
+    },
     snippet: {
       type: String,
       required: true,

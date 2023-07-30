@@ -30,7 +30,10 @@ const blogCreatePost = (req, res) => {
   blog
     .save()
     .then((result) => res.redirect("/blogs"))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(500).json({ error: "Server error occurred" });
+      console.log("Save blog error: ", err);
+    });
 };
 
 const blogDelete = (req, res) => {
