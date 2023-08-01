@@ -8,9 +8,13 @@
       <h2>About AM Blog</h2>
       <div>
         <p>
-          <b>AM Blog</b> is a simple blog, consisting of a home page to display
-          all posts, an about page, and a page to add new posts.<br />
-          Each post can be deleted individually. I used <b>Node.js</b> with
+          <b>AM Blog</b> is a simple blogs site, consisting of a "<B>Blogs</B>"
+          page to display all posts, an "<b>About</b>" page, and "<b>New Blog</b
+          >" page to add new posts if the user is logged in. I created a simple
+          sign up and sign in pages, and for authentication I used
+          <b>JWT</b> (JSON Web Tokens). The logged in user can delete there own
+          blogs individually.<br /><br />
+          I used <b>Node.js</b> with
           <b>Express</b>
           framework to mange routing, requests, server-side logic and
           responses.<br />
@@ -74,6 +78,25 @@
         function. A controller communicates with the appropriate model to get
         dtat into a view, then the view renders that data into it's template and
         it get sent to the browser.
+      </div>
+      <br />
+      <br />
+      <div>
+        <h4>Authentication and validation :</h4>
+        for user registration, login and proper data entry verification process
+        I used:<br /><br />
+        <b>- JWT</b><br />
+        <i>JSON Web Token</i> is an open standard (RFC 7519) that defines a
+        compact and self-contained way for securely transmitting information
+        between parties as a JSON object. This information can be verified and
+        trusted because it is digitally signed. JWTs can be signed using a
+        secret (with the HMAC algorithm) or a public/private key pair using RSA
+        or ECDSA.<br /><br />
+        <b>- Validator:</b><br />
+        It is a third-party validation package, this package has different
+        functions inside it that we can use to validate differnt things and one
+        of those things is to validate an E-mail. I used "<i>isEmail</i> "
+        instead of creating my own function to validate the E-mail.
       </div>
       <br />
       <br />
